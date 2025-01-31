@@ -3,11 +3,53 @@ import Hero from "@components/Hero";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 import Image from "next/image";
-import "../../styles/home.scss";
-import SvgSubtitle from "@components/SvgSubtitle";
+import "../styles/home.scss";
 import Button from "@components/Button";
 import AnimatedSection from "@components/AnimatedSection";
 import { PiArmchairLight, PiLampLight, PiOfficeChairLight } from "react-icons/pi";
+import CustomSlider from "@components/Slider";
+
+const imageData = [
+  "/images/hero5.jpg",
+  "/images/hero6.jpg",
+  "/images/hero7.jpg",
+  "/images/hero5.jpg",
+  "/images/hero6.jpg",
+  "/images/hero7.jpg",
+];
+
+const videoData = [
+  {
+    url: "https://www.youtube.com/watch?v=h1RF3MnbP6g",
+    thumbnail: "/images/YT3.jpeg",
+    title: "Mudita's 4BHK Home Tour",
+  },
+  {
+    url: "https://www.youtube.com/watch?v=NR2-kAR0SEI",
+    thumbnail: "/images/YT3.jpeg",
+    title: "Interior Design Process",
+  },
+  {
+    url: "https://www.youtube.com/watch?v=d6xICum7wnU",
+    thumbnail: "/images/YT3.jpeg",
+    title: "Luxury Apartment Interiors",
+  },
+  {
+    url: "https://www.youtube.com/watch?v=h1RF3MnbP6g",
+    thumbnail: "/images/YT3.jpeg",
+    title: "Mudita's 4BHK Home Tour",
+  },
+  {
+    url: "https://www.youtube.com/watch?v=NR2-kAR0SEI",
+    thumbnail: "/images/YT3.jpeg",
+    title: "Interior Design Process",
+  },
+  {
+    url: "https://www.youtube.com/watch?v=d6xICum7wnU",
+    thumbnail: "/images/YT3.jpeg",
+    title: "Luxury Apartment Interiors",
+  },
+];
 
 const Home = () => {
   return (
@@ -41,9 +83,12 @@ const Home = () => {
             </Col>
             <Col lg={6} className="about-content">
               <AnimatedSection
+                sectionType="primary"
+                subtitle="About Us"
                 title="Our passion for design, your vision realized."
                 description="Our dedicated team of designers works closely with you to understand your vision and bring it to life with thoughtful attention to detail. Whether it’s transforming a single room or an entire home."
                 styles={{
+                  subtitle: { color: "var(--color-primary)" },
                   title: { color: "var(--color-black)" },
                   description: { color: "var(--color-black)" },
                 }}
@@ -68,11 +113,13 @@ const Home = () => {
         <Container>
           <Row className="align-items-center">
             <Col lg={6}>
-              <SvgSubtitle text="Why Choose Us" color="primary" />
               <AnimatedSection
+                sectionType="primary"
+                subtitle="Why Choose Us"
                 title="A behind-the-scenes look at our agency"
                 description="From concept to completion, discover how we bring your vision to life with innovation, collaboration, and expert craftsmanship."
                 styles={{
+                  subtitle: { color: "var(--color-primary)" },
                   title: { color: "var(--color-black)" },
                   description: { color: "var(--color-black)" },
                 }}
@@ -148,6 +195,36 @@ const Home = () => {
               </div>
             </Col>
           </Row>
+        </Container>
+      </Container>
+
+      {/* Image Slider Section */}
+      <Container fluid className="slider-section">
+        <Container>
+          <AnimatedSection
+            title="Laughing Wood Interiors"
+            description="A glimpse into our stunning interiors"
+            styles={{
+              title: { fontFamily: "var(--font-secondary)", color: "var(--color-primary)" },
+              description: { color: "var(--color-secondary)" },
+            }}
+          />
+          <CustomSlider type="image" data={imageData} />
+        </Container>
+      </Container>
+
+      {/* Video Slider Section */}
+      <Container fluid className="slider-section video-slider">
+        <Container>
+          <AnimatedSection
+            title="Laughing Wood Interiors"
+            description="Behind the scenes of our interior designs"
+            styles={{
+              title: { fontFamily: "var(--font-secondary)", color: "var(--color-primary)" },
+              description: { color: "var(--color-secondary)" },
+            }}
+          />
+          <CustomSlider type="video" data={videoData} />
         </Container>
       </Container>
     </>

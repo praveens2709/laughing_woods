@@ -1,43 +1,35 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import whatsappIcon from '@assets/images/whatsapp.png';
 import { Container } from 'react-bootstrap';
+import "../styles/whatsappIcon.scss";
 
 const WhatsappIcon = () => {
-    const iconStyles = {
-        position: 'fixed',
-        bottom: '60px',
-        right: '75px',
-        zIndex: 1000,
-        width: '50px',
-        height: '50px',
-    };
 
-    const imageStyles = {
-        width: '100%',
-        height: 'auto',
-        objectFit: 'contain',
-        transition: 'transform 0.3s ease',
-    };
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) return null;
 
     return (
-        // <Container fluid>
-            <div style={iconStyles}>
+        <Container fluid>
+            <div className='whatsapp-icon'>
                 <a href="https://wa.me/9116577183" target="_blank" rel="noopener noreferrer">
                     <Image
                         src={whatsappIcon}
                         alt="WhatsApp"
-                        style={imageStyles}
+                        className='whatsapp-icon-img'
                         width={50}
                         height={50}
-                        onMouseEnter={(e) => (e.target.style.transform = 'scale(1.1)')}
-                        onMouseLeave={(e) => (e.target.style.transform = 'scale(1)')}
                     />
                 </a>
             </div>
-        // </Container>
+        </Container>
     );
 };
 

@@ -1,4 +1,3 @@
-/* home.module.scss */
 @use "../styles/variables" as vars;
 @use "../styles/mixins" as mixins;
 @use "../styles/animations.scss";
@@ -219,6 +218,143 @@
       color: var(--color-white);
       fill: var(--color-white);
       transition: fill 0.3s ease-in-out;
+    }
+  }
+}
+
+.slider-section {
+  padding: 60px 0;
+  text-align: center;
+
+  .title {
+    font-family: var(--font-secondary);
+    font-size: clamp(26px, 4vw, 40px);
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .description {
+    color: var(--color-secondary);
+    font-size: clamp(14px, 3vw, 20px);
+    padding-bottom: 10px;
+    border-bottom: 0.8px solid var(--color-primary);
+    margin-top: -10px;
+  }
+
+  .swiper-wrapper {
+    padding-bottom: 40px;
+  }
+
+  .swiper-pagination {
+    position: absolute;
+    bottom: 5px;
+    z-index: 999;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background-color: var(--color-secondary);
+      opacity: 0.5;
+      transition: all 0.3s ease-in-out;
+
+      &.swiper-pagination-bullet-active {
+        background-color: var(--color-primary);
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img,
+    .single-video-item .video-div a img {
+      width: 100%;
+      max-width: 100%;
+      height: 280px;
+      min-height: 220px;
+      transition: transform 0.5s ease-in-out;
+
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+
+    img {
+      object-fit: cover;
+    }
+
+    .single-video-item .video-div a img {
+      object-fit: contain;
+    }
+  }
+
+  .single-video-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .video-div {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+
+      a {
+        display: block;
+        width: 100%;
+
+        img {
+          width: 100%;
+          height: 250px;
+          object-fit: contain;
+        }
+      }
+    }
+
+    .video-heading {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-secondary);
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .swiper-slide img {
+      height: 220px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .swiper-slide img {
+      height: 200px;
+    }
+
+    .single-video-item .video-div a img {
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .swiper-slide img {
+      height: 180px;
+    }
+
+    .single-video-item .video-div a img {
+      height: 160px;
+    }
+
+    .video-heading {
+      font-size: 0.9rem;
     }
   }
 }

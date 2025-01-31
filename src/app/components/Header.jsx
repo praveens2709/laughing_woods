@@ -35,9 +35,9 @@ const Header = () => {
           <Navbar.Collapse id="navbarNav" className={isNavOpen ? "show" : ""}>
             <Nav className="ms-auto">
               <Link className="nav-link" href="/" onClick={() => setIsNavOpen(false)}>Home</Link>
-              <Link className="nav-link" href="/pages/about" onClick={() => setIsNavOpen(false)}>About Us</Link>
-              <Link className="nav-link" href="/pages/portfolio" onClick={() => setIsNavOpen(false)}>Portfolio</Link>
-              <Link className="nav-link" href="/pages/contact" onClick={() => setIsNavOpen(false)}>Contact Us</Link>
+              <Link className="nav-link" href="/about" onClick={() => setIsNavOpen(false)}>About Us</Link>
+              <Link className="nav-link" href="/portfolio" onClick={() => setIsNavOpen(false)}>Portfolio</Link>
+              <Link className="nav-link" href="/contact" onClick={() => setIsNavOpen(false)}>Contact Us</Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

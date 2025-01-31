@@ -3,7 +3,6 @@ import "../styles/_hero.scss";
 import Header from "./Header";
 import { Container } from "react-bootstrap";
 import Button from "./Button";
-import SvgSubtitle from "./SvgSubtitle";
 import AnimatedSection from "./AnimatedSection";
 
 const Hero = () => {
@@ -12,11 +11,13 @@ const Hero = () => {
       <Header />
       <Container>
         <div className="hero-content d-flex flex-column gap-4">
-          <SvgSubtitle text="Where Nature Meets Design" color="var(--color-white)" />
           <AnimatedSection
+            sectionType="white"
+            subtitle="Where Nature Meets Design"
             title="Designing nature-inspired spaces, for you."
             description="At Laughing Wood Interiors, we bring your vision to life with a touch of nature, a dash of creativity, and a whole lot of heart."
             styles={{
+              subtitle: { color: "var(--color-white)" },
               title: { color: "var(--color-white)" },
               description: { color: "var(--color-white)" },
             }}
