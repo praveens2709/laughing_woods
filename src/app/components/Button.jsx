@@ -1,28 +1,30 @@
 "use client";
 
-import React, { useEffect } from "react";
-import anime from "animejs";
-import "../styles/_button.scss";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { FiArrowRight } from "react-icons/fi";
+import "../styles/_button.scss";
 
-const Button = ({ text, variant = "primary", onClick }) => {
-  const buttonRef = React.useRef(null);
+const Button = ({ text, variant = "primary", onClick, animate = false }) => {
+  const buttonRef = useRef(null);
 
   useEffect(() => {
-    if (buttonRef.current) {
-      anime({
-        targets: buttonRef.current,
-        opacity: [0, 1],
-        translateY: [30, 0],
-        easing: "easeInOutQuad",
-        duration: 800,
-        delay: 300,
-      });
+    if (animate && buttonRef.current) {
+      gsap.fromTo(
+        buttonRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+      );
     }
-  }, []);  
+  }, [animate]);
 
   return (
-    <button ref={buttonRef} className={`custom-btn ${variant}`} onClick={onClick}>
+    <button
+      ref={buttonRef}
+      className={`custom-btn ${variant}`}
+      onClick={onClick}
+      style={{ visibility: animate ? "visible" : "hidden" }}
+    >
       {text} <FiArrowRight />
     </button>
   );

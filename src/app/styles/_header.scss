@@ -2,12 +2,7 @@
 
 .header {
   padding-top: 4rem;
-
-  .logo {
-    width: 100px;
-    height: 100px;
-    bottom: 0;
-  }
+  opacity: 0;
 
   .navbar {
     background: vars.$bg-header;
@@ -52,15 +47,33 @@
   }
 }
 
+.logo-container {
+  position: absolute;
+  top: 10px;
+  left: 10%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
 /* For responsive design */
 @media (max-width: 991px) {
   .header {
     padding-top: 2.3rem;
+  }
 
-    .logo {
-      width: 80px;
-      height: 80px;
-    }
+  .logo-container {
+    top: 0px;
+    left: 13%;
+  }
+
+  .logo{
+    width: 70px;
+    height: 70px;
   }
 
   .navbar-collapse {

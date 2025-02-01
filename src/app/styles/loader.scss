@@ -1,66 +1,22 @@
-// Keyframes for animations
-@keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    50% { transform: translateX(10px); }
-    75% { transform: translateX(-10px); }
-    100% { transform: translateX(0); }
-  }
-  
-  @keyframes moveToHeader {
-    0% { 
-      transform: translate(0, 0); 
-      opacity: 1; 
-      background-color: rgba(255, 255, 255, 1); 
-    }
-    100% { 
-      transform: translate(-52%, -50%);
-      opacity: 0; 
-      background-color: rgba(255, 255, 255, 0); 
-    }
-  }
-  
-  @keyframes fadeInContent {
-    0% { opacity: 0; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-  }
-  
-  // Loader container styles
-  .loader {
-    position: fixed;
-    top: 40%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    animation: 1s moveToHeader forwards;
-    transition: background-color 1s ease;
-  
-    &.shake {
-      animation: shake 2s linear infinite;
-    }
-  
-    &.moveToHeader {
-      animation: moveToHeader 1s forwards;
-    }
-  }
-  
-  // Loader spinner styles
-  .loader-spinner {
-    width: 100px;
-    height: 100px;
-    background-image: url('/images/logo1.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    animation: shake 2s linear infinite;
-  }
-  
-  .loader.moveToHeader .loader-spinner {
-    animation: none;
-  }
-  
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-spinner {
+  width: 100px;
+  height: 100px;
+  background-image: url('/images/logo1.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}

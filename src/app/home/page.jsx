@@ -1,4 +1,6 @@
-import React from "react";
+'use client';
+
+import React, { useEffect, useState } from "react";
 import Hero from "@components/Hero";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
@@ -8,6 +10,8 @@ import Button from "@components/Button";
 import AnimatedSection from "@components/AnimatedSection";
 import { PiArmchairLight, PiLampLight, PiOfficeChairLight } from "react-icons/pi";
 import CustomSlider from "@components/Slider";
+import FAQ from "@components/FaQ";
+import LoadingProvider from "@utils/LoadingProvider";
 
 const imageData = [
   "/images/hero5.jpg",
@@ -52,181 +56,193 @@ const videoData = [
 ];
 
 const Home = () => {
+  const [animateButtons, setAnimateButtons] = useState(false);
+  const [animateFeatures, setAnimateFeatures] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2500);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <>
-      <Hero />
-      <Container fluid className="about-section">
-        <Container>
-          <Row className="align-items-center">
-            <Col lg={6} className="about-images">
-              <div className="image-wrapper">
-                <div className="main-image-wrapper shine-hover">
-                  <Image
-                    src="/images/hero7.jpg"
-                    alt="Living Room 1"
-                    className="main-image"
-                    width={600}
-                    height={400}
-                  />
+    <LoadingProvider isLoading={isLoading}>
+    <Hero isLoading={isLoading}/>
+      <section className="about-section">
+        <Container fluid>
+          <Container>
+            <Row className="align-items-center">
+              <Col lg={6} className="about-images">
+                <div className="image-wrapper">
+                  <div className="main-image-wrapper shine-hover">
+                    <Image
+                      src="/images/hero7.jpg"
+                      alt="Living Room 1"
+                      className="main-image"
+                      width={600}
+                      height={400}
+                    />
+                  </div>
+                  <div className="overlay-image-wrapper shine-hover">
+                    <Image
+                      src="/images/hero5.jpg"
+                      alt="Living Room 2"
+                      className="overlay-image"
+                      width={600}
+                      height={400}
+                    />
+                  </div>
+                  <span className="rotated-text d-none d-xl-block">Laughing Wood</span>
                 </div>
-                <div className="overlay-image-wrapper shine-hover">
-                  <Image
-                    src="/images/hero5.jpg"
-                    alt="Living Room 2"
-                    className="overlay-image"
-                    width={600}
-                    height={400}
-                  />
-                </div>
-                <span className="rotated-text d-none d-xl-block">Laughing Wood</span>
-              </div>
-            </Col>
-            <Col lg={6} className="about-content">
-              <AnimatedSection
-                sectionType="primary"
-                subtitle="About Us"
-                title="Our passion for design, your vision realized."
-                description="Our dedicated team of designers works closely with you to understand your vision and bring it to life with thoughtful attention to detail. Whether it’s transforming a single room or an entire home."
-                styles={{
-                  subtitle: { color: "var(--color-primary)" },
-                  title: { color: "var(--color-black)" },
-                  description: { color: "var(--color-black)" },
-                }}
-              />
-              <ul className="features">
-                <li>
-                  <FaCheckCircle className="icon" />
-                  <span>Creative expertise</span>
-                </li>
-                <li>
-                  <FaCheckCircle className="icon" />
-                  <span>Client-centered approach</span>
-                </li>
-              </ul>
-              <Button text="Read More" variant="primary" />
-            </Col>
-          </Row>
+              </Col>
+              <Col lg={6} className="about-content">
+                <AnimatedSection
+                  sectionType="primary"
+                  subtitle="About Us"
+                  title="Our passion for design, your vision realized."
+                  description="Our dedicated team of designers works closely with you to understand your vision and bring it to life with thoughtful attention to detail. Whether it’s transforming a single room or an entire home."
+                  styles={{
+                    subtitle: { color: "var(--color-primary)" },
+                    title: { color: "var(--color-black)" },
+                    description: { color: "var(--color-black)" },
+                  }}
+                  onAnimationComplete={() => setAnimateButtons(true)}
+                />
+                <ul className="features">
+                  <li>
+                    <FaCheckCircle className="icon" />
+                    <span>Creative expertise</span>
+                  </li>
+                  <li>
+                    <FaCheckCircle className="icon" />
+                    <span>Client-centered approach</span>
+                  </li>
+                </ul>
+                <Button style={{ visibility: animateButtons ? "visible" : "hidden" }} text="Read More" variant="primary" animate={animateButtons} />
+              </Col>
+            </Row>
+          </Container>
         </Container>
-      </Container>
+      </section>
 
-      <Container fluid className="px-0 py-5 whychooseus-section">
-        <Container>
-          <Row className="align-items-center">
-            <Col lg={6}>
-              <AnimatedSection
-                sectionType="primary"
-                subtitle="Why Choose Us"
-                title="A behind-the-scenes look at our agency"
-                description="From concept to completion, discover how we bring your vision to life with innovation, collaboration, and expert craftsmanship."
-                styles={{
-                  subtitle: { color: "var(--color-primary)" },
-                  title: { color: "var(--color-black)" },
-                  description: { color: "var(--color-black)" },
-                }}
-              />
-              <div className="features-list ms-lg-2 me-lg-4">
-                <div className="feature-item d-flex gap-3 border-bottom">
-                  <div className="icon-circle rounded-circle">
-                    <PiLampLight size={25} />
+      <section className="px-0 py-5 whychooseus-section">
+        <Container fluid>
+          <Container>
+            <Row className="align-items-center">
+              <Col lg={6}>
+                <AnimatedSection
+                  sectionType="primary"
+                  subtitle="Why Choose Us"
+                  title="A behind-the-scenes look at our agency"
+                  description="From concept to completion, discover how we bring your vision to life with innovation, collaboration, and expert craftsmanship."
+                  styles={{
+                    subtitle: { color: "var(--color-primary)" },
+                    title: { color: "var(--color-black)" },
+                    description: { color: "var(--color-black)" },
+                  }}
+                  onAnimationComplete={() => setAnimateFeatures(true)}
+                />
+                <div className="features-list ms-lg-2 me-lg-4">
+                {[
+                    { icon: <PiLampLight size={25} />, title: "Tailored Design Solutions", desc: "We provide personalized interior design services that reflect your unique vision and lifestyle." },
+                    { icon: <PiArmchairLight size={25} />, title: "Seamless Project Management", desc: "We handle the entire design process, from concept to completion, with flawless execution." },
+                    { icon: <PiOfficeChairLight size={25} />, title: "Client-Centered Collaboration", desc: "Your input is valued throughout the entire process, ensuring your vision is fully realized." }
+                  ].map((feature, index) => (
+                    <div
+                      key={index}
+                      className={`feature-item d-flex gap-3 border-bottom ${animateFeatures ? "fade-in-up" : "hidden"}`}
+                      style={{ transitionDelay: `${index * 200}ms` }}
+                    >
+                      <div className="icon-circle rounded-circle">{feature.icon}</div>
+                      <div className="whychooseus-content">
+                        <h5>{feature.title}</h5>
+                        <p className="mb-0">{feature.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Col>
+              <Col lg={6}>
+                <div className="image-grid d-flex flex-column pt-lg-0 pt-3">
+                  <div className="row">
+                    <div className="image image1 pe-0 shine-hover">
+                      <Image
+                        src="/images/hero2.jpg"
+                        alt="Interior Design 1"
+                        width={600}
+                        height={400}
+                      />
+                    </div>
+                    <div className="image image2 shine-hover">
+                      <Image
+                        src="/images/hero3.jpg"
+                        alt="Interior Design 2"
+                        width={600}
+                        height={400}
+                      />
+                    </div>
                   </div>
-                  <div className="whychooseus-content">
-                    <h5>Tailored Design Solutions</h5>
-                    <p className="mb-0">We provide personalized interior design services that reflect your unique vision and lifestyle.</p>
+                  <div className="row">
+                    <div className="image image3 pe-0 shine-hover">
+                      <Image
+                        src="/images/hero4.jpg"
+                        alt="Interior Design 3"
+                        width={600}
+                        height={400}
+                      />
+                    </div>
+                    <div className="image image4 shine-hover">
+                      <Image
+                        src="/images/hero9.jpg"
+                        alt="Interior Design 4"
+                        width={600}
+                        height={400}
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="feature-item d-flex border-bottom gap-3">
-                  <div className="icon-circle rounded-circle">
-                    <PiArmchairLight size={25} />
-                  </div>
-                  <div className="whychooseus-content">
-                    <h5>Seamless Project Management</h5>
-                    <p className="mb-0">We handle the entire design process, from concept to completion, with flawless execution.</p>
-                  </div>
-                </div>
-                <div className="feature-item d-flex gap-3">
-                  <div className="icon-circle rounded-circle">
-                    <PiOfficeChairLight size={25} />
-                  </div>
-                  <div className="whychooseus-content">
-                    <h5>Client-Centered Collaboration</h5>
-                    <p className="mb-0">Your input is valued throughout the entire process, ensuring your vision is fully realized.</p>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col lg={6}>
-              <div className="image-grid d-flex flex-column pt-lg-0 pt-3">
-                <div className="row">
-                  <div className="image image1 pe-0 shine-hover">
-                    <Image
-                      src="/images/hero2.jpg"
-                      alt="Interior Design 1"
-                      width={600}
-                      height={400}
-                    />
-                  </div>
-                  <div className="image image2 shine-hover">
-                    <Image
-                      src="/images/hero3.jpg"
-                      alt="Interior Design 2"
-                      width={600}
-                      height={400}
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="image image3 pe-0 shine-hover">
-                    <Image
-                      src="/images/hero4.jpg"
-                      alt="Interior Design 3"
-                      width={600}
-                      height={400}
-                    />
-                  </div>
-                  <div className="image image4 shine-hover">
-                    <Image
-                      src="/images/hero9.jpg"
-                      alt="Interior Design 4"
-                      width={600}
-                      height={400}
-                    />
-                  </div>
-                </div>
-              </div>
-            </Col>
-          </Row>
+              </Col>
+            </Row>
+          </Container>
         </Container>
-      </Container>
+      </section>
 
       {/* Image Slider Section */}
-      <Container fluid className="slider-section">
-        <Container>
-          <AnimatedSection
-            title="Laughing Wood Interiors"
-            description="A glimpse into our stunning interiors"
-            styles={{
-              title: { fontFamily: "var(--font-secondary)", color: "var(--color-primary)" },
-              description: { color: "var(--color-secondary)" },
-            }}
-          />
-          <CustomSlider type="image" data={imageData} />
+      <section className="slider-section">
+        <Container fluid>
+          <Container>
+            <AnimatedSection
+              title="Laughing Wood Interiors"
+              description="A glimpse into our stunning interiors"
+              styles={{
+                title: { fontFamily: "var(--font-secondary)", color: "var(--color-primary)" },
+                description: { color: "var(--color-secondary)" },
+              }}
+            />
+            <CustomSlider type="image" data={imageData} />
+          </Container>
         </Container>
-      </Container>
+      </section>
 
       {/* Video Slider Section */}
-      <Container fluid className="slider-section video-slider">
-        <Container>
-          <AnimatedSection
-            title="Laughing Wood Interiors"
-            description="Behind the scenes of our interior designs"
-            styles={{
-              title: { fontFamily: "var(--font-secondary)", color: "var(--color-primary)" },
-              description: { color: "var(--color-secondary)" },
-            }}
-          />
-          <CustomSlider type="video" data={videoData} />
+      <section className="slider-section video-slider">
+        <Container fluid>
+          <Container>
+            <AnimatedSection
+              title="Laughing Wood Interiors"
+              description="Behind the scenes of our interior designs"
+              styles={{
+                title: { fontFamily: "var(--font-secondary)", color: "var(--color-primary)" },
+                description: { color: "var(--color-secondary)" },
+              }}
+            />
+            <CustomSlider type="video" data={videoData} />
+          </Container>
         </Container>
-      </Container>
+      </section>
+
+      <FAQ />
+      </LoadingProvider>
     </>
   );
 };

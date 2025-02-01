@@ -1,6 +1,14 @@
 @use "../styles/variables" as vars;
 @use "../styles/mixins" as mixins;
 
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
 .hero {
     position: relative;
     min-height: 100vh;
@@ -8,6 +16,8 @@
     color: vars.$color-white;
     background-attachment: fixed;
     overflow: hidden;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
 
     &::before {
         content: "";
@@ -28,17 +38,17 @@
     .hero-content {
         position: relative;
         width: 84%;
-        padding: 150px 0 280px 0;
+        padding: 280px 0;
         z-index: 2;
 
         @media (max-width: 1024px) {
             width: 90%;
-            padding: 100px 0 200px 0;
+            padding: 200px 0;
         }
 
         @media (max-width: 768px) {
             width: 100%;
-            padding: 60px 0 120px 0;
+            padding: 120px 0;
         }
     }
 

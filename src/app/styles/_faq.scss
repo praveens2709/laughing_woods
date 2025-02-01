@@ -1,0 +1,55 @@
+@use '../styles/variables' as vars;
+
+.faq {
+  background: vars.$bg-body;
+
+  .faq-title {
+    font-family: vars.$font-primary;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: vars.$color-black;
+  }
+
+  .accordion {
+    --bs-accordion-border-radius: 0;
+    --bs-accordion-inner-border-radius: 0;
+    --bs-accordion-btn-focus-box-shadow: none;
+
+    .accordion-item {
+      border: none;
+      margin-bottom: 20px;
+      overflow: hidden;
+      background: vars.$color-white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+      .accordion-header {
+        font-family: vars.$font-primary;
+
+        button {
+          background: vars.$bg-header;
+          color: vars.$color-black;
+          font-size: 18px;
+          font-weight: 600;
+          padding: 15px;
+          transition: background 0.3s ease-in-out;
+
+          &:hover {
+            background: vars.$hover-color-primary;
+            color: vars.$color-white;
+
+            .accordion-button::after {
+              background-color: vars.$color-white;
+            }            
+          }
+        }
+      }
+
+      .accordion-body {
+        font-size: 18px;
+        font-family: vars.$font-primary;
+        color: vars.$color-black;
+        padding: 15px;
+      }
+    }
+  }
+}

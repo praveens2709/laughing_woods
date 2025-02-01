@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import '../styles/_svg.scss';
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "../styles/_svg.scss";
 
 const AnimatedSection = ({
   subtitle,
@@ -11,44 +11,50 @@ const AnimatedSection = ({
   description,
   styles = {},
   animationDelay = 0,
-  sectionType = 'white',
+  sectionType = "white",
+  onAnimationComplete,
 }) => {
   const sectionRef = useRef(null);
+  const [animationPlayed, setAnimationPlayed] = useState(false);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-  }, []);
 
-  useEffect(() => {
-    if (sectionRef.current) {
+    if (sectionRef.current && !animationPlayed) {
       const elements = sectionRef.current.children;
-      gsap.fromTo(
-        elements,
-        { opacity: 0, y: 30 },
-        {
+      gsap.set(elements, { opacity: 0, y: 30 });
+
+      const timeout = setTimeout(() => {
+        gsap.to(elements, {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          ease: 'power2.out',
+          ease: "power2.out",
           stagger: 0.3,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
+            start: "top 80%",
+            toggleActions: "play none none none",
           },
-        }
-      );
+          onComplete: () => {
+            if (onAnimationComplete) {
+              onAnimationComplete();
+            }
+            setAnimationPlayed(true);
+          },
+        });
+      }, animationDelay);
+
+      return () => clearTimeout(timeout);
     }
-  }, []);
+  }, [animationDelay, onAnimationComplete, animationPlayed]);
 
   return (
     <div ref={sectionRef} className="animated-section d-flex flex-column gap-3">
       {subtitle && (
         <div
           className={`subtitle-wrapper d-flex align-items-center gap-2 ${sectionType}`}
-          style={{
-            color: styles.subtitle?.color || 'var(--color-white)', // Set color dynamically based on props
-          }}
+          style={{ color: styles.subtitle?.color || "var(--color-white)" }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +62,7 @@ const AnimatedSection = ({
             height="6"
             viewBox="0 0 27 6"
             className="subtitle-icon"
-            style={{ fill: styles.subtitle?.color || 'var(--color-white)' }} // Ensure primary color is applied
+            style={{ fill: styles.subtitle?.color || "var(--color-white)" }}
           >
             <path d="M26.8868 3L24 0.113249L21.1132 3L24 5.88675L26.8868 3ZM0 3.5H24V2.5H0V3.5Z" />
           </svg>
@@ -68,7 +74,7 @@ const AnimatedSection = ({
           className="title animated-heading"
           style={{
             ...styles.title,
-            color: styles.title?.color || 'var(--color-white)',
+            color: styles.title?.color || "var(--color-white)",
           }}
         >
           {title}
@@ -79,7 +85,7 @@ const AnimatedSection = ({
           className="description"
           style={{
             ...styles.description,
-            color: styles.description?.color || 'var(--color-white)',
+            color: styles.description?.color || "var(--color-white)",
           }}
         >
           {description}
@@ -88,6 +94,5 @@ const AnimatedSection = ({
     </div>
   );
 };
-
 
 export default AnimatedSection;

@@ -3,6 +3,7 @@ import '../app/styles/main.scss';
 import './globals.scss';
 import WhatsappIcon from '@components/WhatsappIcon';
 import LoadingProvider from '@utils/LoadingProvider';
+import Footer from '@components/Footer';
 
 export default function RootLayout({ children }) {
   return (
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
         <WhatsappIcon />
         <LoadingProvider>
           <main className={styles.content}>{children}</main>
+          <Footer />
         </LoadingProvider>
       </body>
     </html>

@@ -13,7 +13,7 @@ const Slider = ({ type, data }) => {
     setIsClient(true);
   }, []);
 
-  if (!isClient) return null; // Avoid rendering on server-side
+  if (!isClient) return null;
 
   return (
     <Swiper
