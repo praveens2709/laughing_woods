@@ -1,8 +1,7 @@
-@use '../styles/variables' as vars;
+@use '@styles/variables' as vars;
 
 .header {
   padding-top: 4rem;
-  opacity: 0;
 
   .navbar {
     background: vars.$bg-header;

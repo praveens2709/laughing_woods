@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import "../styles/_hero.scss";
-import Header from "./Header";
+import "@styles/_hero.scss";
 import { Container } from "react-bootstrap";
 import Button from "./Button";
 import AnimatedSection from "./AnimatedSection";
@@ -11,6 +10,7 @@ import gsap from "gsap";
 const Hero = ({ isLoading }) => {
   const [animateButtons, setAnimateButtons] = useState(false);
   const [showHero, setShowHero] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     if (!isLoading) {
@@ -26,9 +26,13 @@ const Hero = ({ isLoading }) => {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <>
-      <Header isLoading={isLoading} />
+    {isMounted && (
       <section className="hero d-flex flex-column" style={{ opacity: 0 }}>
         {showHero && (
           <Container>
@@ -57,6 +61,7 @@ const Hero = ({ isLoading }) => {
           </Container>
         )}
       </section>
+      )}
     </>
   );  
 };

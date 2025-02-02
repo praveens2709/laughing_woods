@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "../styles/_svg.scss";
+import "@styles/_svg.scss";
 
 const AnimatedSection = ({
   subtitle,
@@ -33,7 +33,7 @@ const AnimatedSection = ({
           stagger: 0.3,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 80%",
+            start: "top 50%",
             toggleActions: "play none none none",
           },
           onComplete: () => {

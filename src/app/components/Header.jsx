@@ -3,37 +3,38 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import "../styles/_header.scss";
-import logo from "../../../public/images/logo1.png";
+import "@styles/_header.scss";
+import logo from "@assets/images/logo1.png";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import gsap from "gsap";
 
 const Header = ({ isLoading }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (!isLoading) {
-      const tl = gsap.timeline();
+    setMounted(true);
+  }, []);
 
-      // Logo animation (independent from header)
+  useEffect(() => {
+    if (mounted && !isLoading) {
+      console.log('GSAP Animation Triggered');
+      const tl = gsap.timeline();
       tl.fromTo(
         ".logo",
         { y: "-100%", opacity: 0 },
         { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
       );
-
-      // Header fade-in (AFTER logo animation)
       tl.to(".header", {
         opacity: 1,
         duration: 1,
         ease: "power2.out",
-      }, "-=0.10"); // Starts slightly before logo animation ends
+      }, "-=0.10");
     }
-  }, [isLoading]);
+  }, [isLoading, mounted]);
 
   return (
     <>
-      {/* Logo positioned separately */}
       <div className="logo-container">
         <Image
           src={logo}
@@ -44,13 +45,10 @@ const Header = ({ isLoading }) => {
           priority
         />
       </div>
-
-      {/* Header (now animates separately) */}
-      <header className="header" style={{ opacity: 0 }}> {/* Initially hidden */}
+      <header className="header" style={{ opacity: 0 }}>
         <Container>
           <Navbar expand="lg" variant="dark" className="d-flex justify-content-between align-items-center px-2 py-1 position-relative">
             <Navbar.Brand href="#" className="p-0">
-              {/* Logo is removed from here to separate its animation */}
             </Navbar.Brand>
 
             <Navbar.Toggle

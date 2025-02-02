@@ -1,4 +1,4 @@
-@use '../styles/variables' as vars;
+@use '@styles/variables' as vars;
 
 .footer {
   background: vars.$bg-footer;
@@ -28,7 +28,7 @@
   .brand {
     h2 {
       font-family: vars.$font-secondary;
-      font-size: 28px;
+      font-size: clamp(20px, 3vw, 25px);
       margin-bottom: 10px;
     }
 

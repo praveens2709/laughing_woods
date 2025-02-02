@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import whatsappIcon from '@assets/images/whatsapp.png';
 import { Container } from 'react-bootstrap';
-import "../styles/whatsappIcon.scss";
+import "@styles/whatsappIcon.scss";
 
 const WhatsappIcon = () => {
 

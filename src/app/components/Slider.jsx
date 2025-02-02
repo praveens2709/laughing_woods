@@ -1,8 +1,7 @@
-'use client';
-
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
+import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -35,19 +34,32 @@ const Slider = ({ type, data }) => {
           <SwiperSlide key={index}>
             {type === 'image' ? (
               <div className="shine-hover">
-                <img src={item} alt={`Slide ${index + 1}`} />
+                <div className="image-wrapper">
+                  <Image
+                    src={item}
+                    alt={`Slide ${index + 1}`}
+                    width={500}
+                    height={300}
+                    layout="intrinsic"
+                    className="portfolio-image"
+                    objectFit="cover"
+                  />
+                </div>
               </div>
             ) : type === 'video' ? (
               <div className="single-video-item">
                 <div className="video-div">
                   <a href={item.url} target="_blank" rel="noopener noreferrer">
                     <div className="shine-hover">
-                      <img
+                      <Image
                         src={item.thumbnail}
                         alt={item.title}
+                        width={480}
+                        height={360}
                         onError={(e) =>
                           (e.target.src = 'https://via.placeholder.com/480x360?text=No+Thumbnail')
                         }
+                        objectFit="contain"
                       />
                     </div>
                   </a>

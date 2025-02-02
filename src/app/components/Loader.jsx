@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import gsap from "gsap";
-import "../styles/loader.scss";
+import "@styles/loader.scss";
 
 const Loader = () => {
   useEffect(() => {
