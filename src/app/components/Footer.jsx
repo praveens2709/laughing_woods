@@ -17,7 +17,7 @@ export default function Footer() {
         <div className='footerGrid pb-2'>
           <div className='brand'>
             <h2 className='company-name'>Laughing Wood Interiors</h2>
-            <p>Experience fashion redefined. Your style, our curated collections. Shop now!</p>
+            <p>Elevate your spaces with nature-inspired designs. Thoughtfully crafted interiors, just for you!</p>
             <p>We extend our heartfelt gratitude for choosing us. Thank you!</p>
           </div>
 

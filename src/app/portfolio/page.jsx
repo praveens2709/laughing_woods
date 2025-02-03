@@ -8,18 +8,24 @@ import '@styles/portfolio.scss';
 
 export default function Portfolio() {
   return (
-    <section className="portfolio py-5">
-      <Container>
-        <AnimatedSection
-          title="Our Portfolio"
-          description="Explore some of our latest projects, showcasing our expertise in interior design and space transformation."
-          styles={{
-            title: { color: 'var(--color-primary)', fontSize: '2rem', textAlign: 'center' },
-            description: { color: 'var(--color-secondary)', fontSize: '1.125rem', textAlign: 'center' },
-          }}
-        />
-        <ImageGallery />
-      </Container>
-    </section>
+    <>
+      <section className="portfolio-bg">
+        <Container className='portfolio'>
+          <AnimatedSection
+            title="Our Portfolio"
+            description="Explore some of our latest projects, showcasing our expertise in interior design and space transformation."
+            styles={{
+              title: { color: 'var(--color-white)', textAlign: 'center' },
+              description: { color: 'var(--color-white)', textAlign: 'center' },
+            }}
+          />
+        </Container>
+      </section>
+      <section>
+        <Container className='portfolio-container'>
+          <ImageGallery />
+        </Container>
+      </section>
+    </>
   );
 }

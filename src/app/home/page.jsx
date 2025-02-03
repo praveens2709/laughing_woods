@@ -18,7 +18,6 @@ const Home = () => {
   const [animateButtons, setAnimateButtons] = useState(false);
   const [animateFeatures, setAnimateFeatures] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 2500);
@@ -78,7 +77,12 @@ const Home = () => {
                       <span>Client-centered approach</span>
                     </li>
                   </ul>
-                  <Button style={{ visibility: animateButtons ? "visible" : "hidden" }} text="Read More" variant="primary" animate={animateButtons} />
+                  <div
+                    className="buttons d-flex gap-3"
+                    style={{ visibility: animateButtons ? "visible" : "hidden" }}
+                  >
+                    <Button text="Read More" variant="primary" animate={animateButtons} />
+                  </div>
                 </Col>
               </Row>
             </Container>

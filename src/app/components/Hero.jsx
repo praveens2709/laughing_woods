@@ -33,7 +33,7 @@ const Hero = ({ isLoading }) => {
   return (
     <>
     {isMounted && (
-      <section className="hero d-flex flex-column" style={{ opacity: 0 }}>
+      <section className="hero d-flex flex-column">
         {showHero && (
           <Container>
             <div className="hero-content d-flex flex-column gap-4">

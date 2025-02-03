@@ -33,7 +33,7 @@ const AnimatedSection = ({
           stagger: 0.3,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 50%",
+            start: "top 80%",
             toggleActions: "play none none none",
           },
           onComplete: () => {
