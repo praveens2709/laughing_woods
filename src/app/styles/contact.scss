@@ -1,30 +1,6 @@
 @use "@styles/variables" as vars;
 @use "@styles/mixins" as mixins;
 
-.contact-banner {
-    background: vars.$bg-portfolio;
-    background-attachment: fixed;
-    position: relative;
-    padding: 200px 0 100px;
-    overflow: hidden;
-
-    @media (max-width: vars.$breakpoint-mobile) {
-        padding: 150px 0 50px;
-    }
-}
-
-.contact-us {
-    z-index: 1;
-
-    .title {
-        @include mixins.responsive-font(36px, 60px, 75px);
-    }
-
-    .description {
-        @include mixins.responsive-font(16px, 18px, 20px);
-    }
-}
-
 .contact-form {
     padding-top: 2rem;
     padding-bottom: 2rem;

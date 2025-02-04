@@ -8,25 +8,24 @@ import "@styles/contact.scss";
 import AnimatedSection from '@components/AnimatedSection';
 import Button from '@components/Button';
 import contactUs from "@assets/images/hero16.jpg"
+import HeroSection from '@components/Hero';
+import "@styles/_hero.scss";
 
 export default function Contact() {
     const [animateButtons, setAnimateButtons] = useState(false);
 
     return (
         <>
-            <section className="contact-banner">
-                <Container className='contact-us'>
-                    <AnimatedSection
-                        title="Get in Touch"
-                        description="Have a project in mind or need expert advice? Contact us today, and let’s create a space that inspires."
-                        styles={{
-                            title: { color: 'var(--color-white)', textAlign: 'center' },
-                            description: { color: 'var(--color-white)', textAlign: 'center' },
-                        }}
-                    />
-                </Container>
-            </section>
-
+            <HeroSection
+                title="Get in Touch"
+                description="Have a project in mind or need expert advice? Contact us today, and let’s create a space that inspires."
+                backgroundClass="contact-banner"
+                isLoading={false}
+                styles={{
+                    title: { color: "var(--color-white)", textAlign: "center" },
+                    description: { color: "var(--color-white)", textAlign: "center" },
+                }}
+            />
             <Container className="my-5">
                 <Row className="align-items-center">
                     <Col lg={6}>
