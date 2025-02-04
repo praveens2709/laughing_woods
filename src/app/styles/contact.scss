@@ -1,0 +1,44 @@
+@use "@styles/variables" as vars;
+@use "@styles/mixins" as mixins;
+
+.contact-form {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    h3 {
+        font-family: vars.$font-primary;
+        color: vars.$color-primary;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            color: vars.$color-primary;
+            border: 1px solid vars.$color-primary;
+            font-size: 16px;
+            box-shadow: none;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+    }
+}
+
+.contact-image {
+    img {
+        width: 100%;
+        max-height: 600px;
+        max-width: 100%;
+        border-radius: 0;
+    }
+}

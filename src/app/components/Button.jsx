@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { FiArrowRight } from "react-icons/fi";
-import "../styles/_button.scss";
+import "@styles/_button.scss";
 
 const Button = ({ text, variant = "primary", onClick, animate = false }) => {
   const buttonRef = useRef(null);

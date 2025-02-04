@@ -1,73 +1,40 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
-import Hero from "@components/Hero";
+import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaCheckCircle } from "react-icons/fa";
 import Image from "next/image";
-import "../styles/home.scss";
+import "@styles/home.scss";
 import Button from "@components/Button";
 import AnimatedSection from "@components/AnimatedSection";
 import { PiArmchairLight, PiLampLight, PiOfficeChairLight } from "react-icons/pi";
 import CustomSlider from "@components/Slider";
 import FAQ from "@components/FaQ";
-import LoadingProvider from "@utils/LoadingProvider";
-
-const imageData = [
-  "/images/hero5.jpg",
-  "/images/hero6.jpg",
-  "/images/hero7.jpg",
-  "/images/hero5.jpg",
-  "/images/hero6.jpg",
-  "/images/hero7.jpg",
-];
-
-const videoData = [
-  {
-    url: "https://www.youtube.com/watch?v=h1RF3MnbP6g",
-    thumbnail: "/images/YT3.jpeg",
-    title: "Mudita's 4BHK Home Tour",
-  },
-  {
-    url: "https://www.youtube.com/watch?v=NR2-kAR0SEI",
-    thumbnail: "/images/YT3.jpeg",
-    title: "Interior Design Process",
-  },
-  {
-    url: "https://www.youtube.com/watch?v=d6xICum7wnU",
-    thumbnail: "/images/YT3.jpeg",
-    title: "Luxury Apartment Interiors",
-  },
-  {
-    url: "https://www.youtube.com/watch?v=h1RF3MnbP6g",
-    thumbnail: "/images/YT3.jpeg",
-    title: "Mudita's 4BHK Home Tour",
-  },
-  {
-    url: "https://www.youtube.com/watch?v=NR2-kAR0SEI",
-    thumbnail: "/images/YT3.jpeg",
-    title: "Interior Design Process",
-  },
-  {
-    url: "https://www.youtube.com/watch?v=d6xICum7wnU",
-    thumbnail: "/images/YT3.jpeg",
-    title: "Luxury Apartment Interiors",
-  },
-];
+import { imageData, videoData } from "@utils/data";
+import HeroSection from "@components/Hero";
+import "@styles/_hero.scss";
 
 const Home = () => {
   const [animateButtons, setAnimateButtons] = useState(false);
   const [animateFeatures, setAnimateFeatures] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2500);
-    return () => clearTimeout(timer);
-  }, []);
   return (
     <>
-    <LoadingProvider isLoading={isLoading}>
-    <Hero isLoading={isLoading}/>
+      <HeroSection
+        title="Designing nature-inspired spaces, for you."
+        subtitle="Where Nature Meets Design"
+        description="At Laughing Wood Interiors, we bring your vision to life with a touch of nature, a dash of creativity, and a whole lot of heart."
+        backgroundClass="hero-home"
+        isLoading={false}
+        buttons={[
+          { text: "Explore More", variant: "primary" },
+          { text: "View Projects", variant: "secondary" },
+        ]}
+        styles={{
+          subtitle: { color: "var(--color-white)" },
+          title: { color: "var(--color-white)" },
+          description: { color: "var(--color-white)" },
+        }}
+      />
       <section className="about-section">
         <Container fluid>
           <Container>
@@ -118,7 +85,12 @@ const Home = () => {
                     <span>Client-centered approach</span>
                   </li>
                 </ul>
-                <Button style={{ visibility: animateButtons ? "visible" : "hidden" }} text="Read More" variant="primary" animate={animateButtons} />
+                <div
+                  className="buttons d-flex gap-3"
+                  style={{ visibility: animateButtons ? "visible" : "hidden" }}
+                >
+                  <Button text="Read More" variant="primary" animate={animateButtons} />
+                </div>
               </Col>
             </Row>
           </Container>
@@ -143,7 +115,7 @@ const Home = () => {
                   onAnimationComplete={() => setAnimateFeatures(true)}
                 />
                 <div className="features-list ms-lg-2 me-lg-4">
-                {[
+                  {[
                     { icon: <PiLampLight size={25} />, title: "Tailored Design Solutions", desc: "We provide personalized interior design services that reflect your unique vision and lifestyle." },
                     { icon: <PiArmchairLight size={25} />, title: "Seamless Project Management", desc: "We handle the entire design process, from concept to completion, with flawless execution." },
                     { icon: <PiOfficeChairLight size={25} />, title: "Client-Centered Collaboration", desc: "Your input is valued throughout the entire process, ensuring your vision is fully realized." }
@@ -207,7 +179,6 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* Image Slider Section */}
       <section className="slider-section">
         <Container fluid>
           <Container>
@@ -224,7 +195,30 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* Video Slider Section */}
+      <section className="fixed-background-section">
+        <Container>
+          <Row className="text-center justify-content-center">
+            <Col lg={8} className="d-flex flex-column align-items-center gap-5">
+              <AnimatedSection
+                title="Crafting Timeless Spaces"
+                description="At Laughing Wood Interiors, we believe in blending artistry with functionality. Our designs are tailored to reflect your personality, ensuring each space tells its own unique story."
+                styles={{
+                  title: { color: "var(--color-white)" },
+                  description: { color: "var(--color-white)" },
+                }}
+                onAnimationComplete={() => setAnimateButtons(true)}
+              />
+              <Button
+                style={{ visibility: animateButtons ? "visible" : "hidden" }}
+                text="Explore Our Work"
+                variant="primary"
+                animate={animateButtons}
+              />
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
       <section className="slider-section video-slider">
         <Container fluid>
           <Container>
@@ -242,7 +236,6 @@ const Home = () => {
       </section>
 
       <FAQ />
-      </LoadingProvider>
     </>
   );
 };

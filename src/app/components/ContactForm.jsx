@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import '../styles/_footer.scss';
+import "@styles/contact.scss";
+import Button from './Button';
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -14,10 +15,8 @@ const ContactForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Clear any previous status
     setStatus("");
 
-    // Prepare the form data
     const formData = {
       name,
       email,
@@ -47,66 +46,59 @@ const ContactForm = () => {
     }
   };
 
+  const statusClass = status?.includes("success") ? "text-success" : "text-danger";
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="contactForm">
-        <div>
-          <label htmlFor="name">Name</label>
+        <div className='d-md-flex justify-content-between gap-4'>
           <input
             type="text"
-            id="name"
-            name="name"
+            placeholder="Your Name*"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            className="mb-md-3 mb-4"
           />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="phone">Phone No.</label>
-          <input
-            type="phone"
-            id="phone"
-            name="phone"
+            type="text"
+            placeholder="Your Phone*"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
+            className="mb-3"
           />
         </div>
-        <div>
-          <label htmlFor="address">Address</label>
-          <input
-            type="address"
-            id="address"
-            name="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
+        <input
+          type="email"
+          placeholder="Your Email*"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="mb-3"
+        />
+        <input
+          type="text"
+          placeholder="Your Address*"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          required
+          className="mb-3"
+        />
+        <textarea
+          rows={4}
+          placeholder="Your Message*"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          required
+          className="mb-3"
+        ></textarea>
+
+        <div className="buttons d-flex gap-3 align-items-center justify-content-between">
+          <Button text="Send Message" variant="primary" animate={true} />
+          {status && <span className={statusClass}>{status}</span>}
         </div>
-        <div>
-          <label htmlFor="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Send</button>
       </form>
-      {status && <p>{status}</p>}
     </div>
   );
 };

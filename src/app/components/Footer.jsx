@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { FaFacebookF, FaInstagram, FaTwitter, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import '../styles/_footer.scss';
+import '@styles/_footer.scss';
 import { Container } from 'react-bootstrap';
 import Button from './Button';
 
@@ -17,7 +17,7 @@ export default function Footer() {
         <div className='footerGrid pb-2'>
           <div className='brand'>
             <h2 className='company-name'>Laughing Wood Interiors</h2>
-            <p>Experience fashion redefined. Your style, our curated collections. Shop now!</p>
+            <p>Elevate your spaces with nature-inspired designs. Thoughtfully crafted interiors, just for you!</p>
             <p>We extend our heartfelt gratitude for choosing us. Thank you!</p>
           </div>
 
@@ -54,7 +54,7 @@ export default function Footer() {
             <p>Be the first to know about new arrivals, lookbooks, sales & exclusive offers!</p>
             <form className='newsletterForm'>
               <input type="email" placeholder="Your Email" />
-              <Button text="Subscribe" variant="primary" />
+              <Button text="Subscribe" variant="primary" animate={true} />
             </form>
           </div>
         </div>
