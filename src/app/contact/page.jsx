@@ -35,7 +35,7 @@ export default function Contact() {
                                 subtitle="Let's Discuss Your Project"
                                 title="Bringing Your Vision to Life"
                                 description="Whether it's a residential space or a commercial project, our team is here to assist you. Reach out and let's collaborate to create something extraordinary."
-                                animationDelay={1000}
+                                animationDelay={3000}
                                 styles={{
                                     subtitle: { color: "var(--color-primary)" },
                                     title: { color: "var(--color-primary)" },
@@ -61,7 +61,7 @@ export default function Contact() {
                             </form>
                         </div>
                     </Col>
-                    <Col lg={6} className="contact-image">
+                    <Col lg={6} className="contact-image shine-hover">
                         <Image
                             src={contactUs}
                             alt="Interior Design Consultation"
