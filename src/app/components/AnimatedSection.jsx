@@ -24,28 +24,25 @@ const AnimatedSection = ({
       const elements = sectionRef.current.children;
       gsap.set(elements, { opacity: 0, y: 30 });
 
-      const timeout = setTimeout(() => {
-        gsap.to(elements, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: 0.3,
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-          onComplete: () => {
-            if (onAnimationComplete) {
-              onAnimationComplete();
-            }
-            setAnimationPlayed(true);
-          },
-        });
-      }, animationDelay);
-
-      return () => clearTimeout(timeout);
+      gsap.to(elements, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        stagger: 0.3,
+        delay: animationDelay / 1000,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+        onComplete: () => {
+          if (onAnimationComplete) {
+            onAnimationComplete();
+          }
+          setAnimationPlayed(true);
+        },
+      });
     }
   }, [animationDelay, onAnimationComplete, animationPlayed]);
 

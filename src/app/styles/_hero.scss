@@ -1,97 +1,116 @@
 @use "@styles/variables" as vars;
 @use "@styles/mixins" as mixins;
 
-header{
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.hero {
+  position: relative;
+  color: vars.$color-white;
+  overflow: hidden;
+  background: vars.$bg-hero;
+  transition: opacity 1.2s ease-in-out;
+
+  &.hero-home {
+    background: vars.$bg-hero;
+    background-attachment: fixed;
+    min-height: 100vh;
+
+    .hero-content {
+      width: 84%;
+      padding: 280px 0;
+
+      @media (max-width: 1024px) {
+        width: 90%;
+        padding: 200px 0;
+      }
+
+      @media (max-width: 768px) {
+        width: 100%;
+        padding: 120px 0;
+      }
+    }
+
+    .description {
+      width: 65%;
+
+      @media (max-width: vars.$breakpoint-mobile) {
+        width: 100%;
+      }
+    }
+
+  }
+
+  &.portfolio-bg,
+  &.contact-banner {
+    background: vars.$bg-portfolio;
+    background-attachment: fixed;
+    padding: 200px 0 100px;
+
+    @media (max-width: vars.$breakpoint-mobile) {
+          padding: 150px 0 50px;
+        }
+  }
+
+  &::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 999;
-}
+    height: 100%;
+    background: linear-gradient(180deg,
+        rgba(25, 35, 36, 0) 0%,
+        rgba(25, 35, 36, 0.4) 80.94%);
+    z-index: 1;
+    pointer-events: none;
+  }
 
-.hero {
+  .hero-content {
     position: relative;
-    min-height: 100vh;
-    background: vars.$bg-hero;
-    color: vars.$color-white;
-    background-attachment: fixed;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out;
+    z-index: 2;
+  }
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            180deg,
-            rgba(25, 35, 36, 0) 0%,
-            rgba(25, 35, 36, 0.4) 80.94%
-        );
-        z-index: 1;
-        pointer-events: none;
-    }
+  .title {
+    font-family: vars.$font-primary;
+    font-weight: 700;
+    line-height: 1.1em;
+    letter-spacing: -0.02em;
 
-    .hero-content {
-        position: relative;
-        width: 84%;
-        padding: 280px 0;
-        z-index: 2;
+    @include mixins.responsive-font(36px, 60px, 75px);
+  }
 
-        @media (max-width: 1024px) {
-            width: 90%;
-            padding: 200px 0;
-        }
+  .description {
+    font-family: vars.$font-primary;
+    font-weight: 600;
+    line-height: 1.7em;
 
-        @media (max-width: 768px) {
-            width: 100%;
-            padding: 120px 0;
-        }
-    }
+    @include mixins.responsive-font(16px, 18px, 20px);
+  }
 
-    .title {
-        font-family: vars.$font-primary;
-        font-weight: 700;
-        line-height: 1.1em;
-        letter-spacing: -0.02em;
-
-        @include mixins.responsive-font(36px, 60px, 75px);
-    }
-
-    .description {
-        width: 65%;
-        font-family: vars.$font-primary;
-        font-weight: 600;
-        line-height: 1.7em;
-
-        @include mixins.responsive-font(16px, 18px, 20px);
-
-        @media (max-width: vars.$breakpoint-mobile) {
-            width: 100%;
-        }
-    }
-
-    .buttons {
-        display: flex;
-        gap: 1rem;
-
-        @media (max-width: vars.$breakpoint-mobile) {
-            flex-direction: column;
-            gap: 10px;
-        }
-    }
+  .buttons {
+    display: flex;
+    gap: 1rem;
 
     @media (max-width: vars.$breakpoint-mobile) {
-        .hero-content {
-            width: 100%;
-        }
-
-        .subtitle {
-            font-size: 15px;
-            width: 100%;
-        }
+      flex-direction: column;
+      gap: 10px;
     }
+  }
+
+  @media (max-width: vars.$breakpoint-mobile) {
+    .hero-content {
+      width: 100%;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      width: 100%;
+    }
+  }
 }
