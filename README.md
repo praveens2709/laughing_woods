@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -38,3 +39,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 # InteriorDesignNext
 # InteriorDesignNext
 # InteriorDesignNext
+=======
+# laughing_woods
+an interior design website
+>>>>>>> 719b10b163354ec6388478d5e2269ef8de60259e
