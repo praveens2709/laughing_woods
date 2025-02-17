@@ -1,0 +1,80 @@
+@use "@styles/variables" as vars;
+@use "@styles/mixins" as mixins;
+
+.get-estimates,
+.get-estimate-form {
+  font-family: vars.$font-primary;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+  }
+
+  .inner-get-estimates {
+    background-color: vars.$bg-body;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 0;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+  }
+
+  h2 {
+    color: vars.$color-secondary;
+    @include mixins.responsive-font(18px, 22px, 30px);
+  }
+
+  .options-section {
+    h5 {
+      @include mixins.responsive-font(14px, 16px, 18px);
+      color: vars.$color-black;
+      text-align: left;
+    }
+
+    .options {
+      .option-btn {
+        flex: 1;
+        padding: 5px 10px;
+        font-size: 16px;
+        border: 1px solid vars.$color-secondary;
+        background-color: transparent;
+        color: vars.$color-secondary;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+
+        &:hover {
+          background-color: vars.$color-primary;
+          color: vars.$color-white;
+        }
+
+        &.selected {
+          background-color: vars.$color-secondary;
+          color: vars.$color-white;
+        }
+      }
+    }
+  }
+
+  .error {
+    font-size: 0.9rem;
+  }
+}
+
+.estimate-image {
+  img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 0;
+  }
+}

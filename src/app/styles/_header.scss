@@ -7,11 +7,6 @@
     background: vars.$bg-header;
     border-bottom: 1px solid #ffffff1a;
 
-    .navbar-nav {
-      display: flex;
-      gap: 10px;
-    }
-
     .nav-link {
       font-family: vars.$font-primary;
       font-size: 16px;
@@ -33,11 +28,22 @@
       background-color: vars.$color-primary;
       padding: 5px 10px 10px 10px;
       border-radius: 0;
+      z-index: 9999;
+      outline: none;
+      box-shadow: none;
 
       .navbar-toggler-icon {
         width: 1em;
         height: 0.8em;
       }
+      
+      .close-icon {
+        padding: 0 5px;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      
     }
 
     .navbar-collapse {
@@ -60,6 +66,37 @@
 }
 
 /* For responsive design */
+@media (min-width: 2401px) {
+  .logo-container {
+    left: 28%;
+  }
+}
+
+
+@media (min-width: 2161px) and (max-width: 2400px) {
+  .logo-container {
+    left: 25%;
+  }
+}
+
+@media (min-width: 2000px) and (max-width: 2160px) {
+  .logo-container {
+    left: 22%;
+  }
+}
+
+@media (min-width: 1710px) and (max-width: 1999px) {
+  .logo-container {
+    left: 20%;
+  }
+}
+
+@media (min-width: 1510px) and (max-width: 1709px) {
+  .logo-container {
+    left: 15%;
+  }
+}
+
 @media (max-width: 991px) {
   .header {
     padding-top: 2.3rem;

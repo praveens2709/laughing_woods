@@ -1,9 +1,8 @@
-import validator from 'validator';
 import nodemailer from 'nodemailer';
+import { validateEmail, validatePhone, sanitizeInput } from '@utils/functions';
 
 export async function POST(req) {
   try {
-    // Get the contact form data from the request body
     const { name, email, phone, address, message } = await req.json();
 
     // Simple validation
@@ -14,14 +13,15 @@ export async function POST(req) {
       );
     }
 
-    if (!validator.isEmail(email)) {
+    // Validate email format
+    if (!validateEmail(email)) {
       return new Response(JSON.stringify({ error: 'Invalid email format' }), {
         status: 400,
       });
     }
 
-    const phoneRegex = /^[7-9][0-9]{9}$/;
-    if (!phoneRegex.test(phone)) {
+    // Validate phone number
+    if (!validatePhone(phone)) {
       return new Response(
         JSON.stringify({
           error:
@@ -31,25 +31,25 @@ export async function POST(req) {
       );
     }
 
-    const sanitizedName = validator.escape(name);
-    const sanitizedMessage = validator.escape(message);
-    const sanitizedPhone = validator.escape(phone);
-    const sanitizedAddress = validator.escape(address);
+    // Sanitize inputs
+    const sanitizedName = sanitizeInput(name);
+    const sanitizedMessage = sanitizeInput(message);
+    const sanitizedPhone = sanitizeInput(phone);
+    const sanitizedAddress = sanitizeInput(address);
 
-    // Create a Nodemailer transporter using your email service credentials
+    // Nodemailer setup and sending email
     const transporter = nodemailer.createTransport({
-      service: 'gmail', // Using Gmail as an example
+      service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // Your email address
-        pass: process.env.EMAIL_PASS, // Your email password (or app-specific password)
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    // Email options (the message details)
     const mailOptions = {
-      from: process.env.EMAIL_USER, // Sender's email address
-      to: process.env.EMAIL_RECIPIENT, // Recipient's email address (where the contact form submissions go)
-      subject: `New Contact Form Submission from ${name}`, // Email subject
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_RECIPIENT,
+      subject: `New Contact Form Submission from ${sanitizedName}`,
       html: `
         <!DOCTYPE html>
         <html lang="en">
@@ -226,7 +226,6 @@ export async function POST(req) {
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent: ' + info.response);
 
-    // Return a success response
     return new Response(
       JSON.stringify({ success: 'Message sent successfully!' }),
       { status: 200 },

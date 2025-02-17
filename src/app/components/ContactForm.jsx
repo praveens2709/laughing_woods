@@ -14,9 +14,9 @@ const ContactForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     setStatus("");
-
+  
     const formData = {
       name,
       email,
@@ -24,7 +24,7 @@ const ContactForm = () => {
       address,
       message,
     };
-
+  
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -33,18 +33,24 @@ const ContactForm = () => {
         },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await res.json();
-
+  
       if (res.ok) {
         setStatus("Message sent successfully!");
+        
+        setName("");
+        setEmail("");
+        setPhone("");
+        setAddress("");
+        setMessage("");
       } else {
         setStatus(data.error || "Something went wrong");
       }
     } catch (error) {
       setStatus("An unexpected error occurred.");
     }
-  };
+  };  
 
   const statusClass = status?.includes("success") ? "text-success" : "text-danger";
 

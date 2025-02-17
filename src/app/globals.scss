@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 
 *,
 *::before,
@@ -8,6 +8,7 @@
   box-sizing: border-box;
 }
 
+// Root Variables
 :root {
   --color-white: #ffffff;
   --color-black: #000000;
@@ -20,11 +21,13 @@
   --font-secondary: 'La Belle Aurore', cursive;
 }
 
+// Font Imports
 @font-face {
   font-family: 'Hanken Grotesk';
   src: url('/fonts/hanken-grotesk-v8-latin-regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -32,17 +35,20 @@
   src: url('/fonts/LaBelleAurore.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
+// Global Styles
 html, body {
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: var(--font-primary);
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: var(--color-white);
   color: #333;
 }
 
-header{
+// Header Styling
+header {
   position: absolute;
   top: 0;
   left: 0;

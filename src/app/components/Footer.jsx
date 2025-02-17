@@ -53,7 +53,7 @@ export default function Footer() {
             <h3>Newsletter</h3>
             <p>Be the first to know about new arrivals, lookbooks, sales & exclusive offers!</p>
             <form className='newsletterForm'>
-              <input type="email" placeholder="Your Email" />
+              <input type="email" placeholder="Your Email" className='rounded-0'/>
               <Button text="Subscribe" variant="primary" animate={true} />
             </form>
           </div>
@@ -66,7 +66,7 @@ export default function Footer() {
         </div>
 
         <div className='copyright'>
-          <p>© 2024 DopeShope. All rights reserved.</p>
+          <p>© 2025 Laughing Wood Interiors. All rights reserved.</p>
         </div>
       </Container>
     </footer>

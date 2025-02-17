@@ -5,6 +5,7 @@ import "@styles/_hero.scss";
 import { Container } from "react-bootstrap";
 import Button from "./Button";
 import AnimatedSection from "./AnimatedSection";
+import { useRouter } from "next/navigation";
 
 const HeroSection = ({
   title,
@@ -15,6 +16,7 @@ const HeroSection = ({
   backgroundClass,
 }) => {
   const [animateButtons, setAnimateButtons] = useState(false);
+  const router = useRouter();
 
   return (
     <>
@@ -40,6 +42,7 @@ const HeroSection = ({
                         text={btn.text}
                         variant={btn.variant}
                         animate={animateButtons}
+                        onClick={() => router.push(btn.href)}
                       />
                     ))}
                   </div>

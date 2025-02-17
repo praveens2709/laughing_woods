@@ -304,35 +304,11 @@
     }
   }
   
-  @media (max-width: 768px) {
-    .swiper-slide img {
-      height: 200px !important;
-      min-height: 200px !important;
-    }
-  
-    .single-video-item .video-div a img {
-      height: 180px !important;
-      min-height: 180px !important;
-    }
-  }
-  
   @media (max-width: 480px) {
-    .swiper-slide img {
-      height: 180px !important;
-      min-height: 180px !important;
-    }
-  
-    .single-video-item .video-div a img {
-      height: 160px !important;
-      min-height: 160px !important;
-    }
-  
     .video-heading {
       font-size: 0.9rem;
     }
   }
-  
-  
 }
 
 .fixed-background-section {

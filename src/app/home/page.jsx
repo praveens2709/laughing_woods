@@ -13,10 +13,12 @@ import FAQ from "@components/FaQ";
 import { imageData, videoData } from "@utils/data";
 import HeroSection from "@components/Hero";
 import "@styles/_hero.scss";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
   const [animateButtons, setAnimateButtons] = useState(false);
   const [animateFeatures, setAnimateFeatures] = useState(false);
+  const router = useRouter();
   return (
     <>
       <HeroSection
@@ -26,8 +28,8 @@ const Home = () => {
         backgroundClass="hero-home"
         isLoading={false}
         buttons={[
-          { text: "Explore More", variant: "primary" },
-          { text: "View Projects", variant: "secondary" },
+          { text: "Get In Touch", variant: "primary", href: "/contact" },
+          { text: "View Projects", variant: "secondary", href: "/portfolio" },
         ]}
         styles={{
           subtitle: { color: "var(--color-white)" },
@@ -89,7 +91,7 @@ const Home = () => {
                   className="buttons d-flex gap-3"
                   style={{ visibility: animateButtons ? "visible" : "hidden" }}
                 >
-                  <Button text="Read More" variant="primary" animate={animateButtons} />
+                  <Button text="Know More" variant="primary" animate={animateButtons} onClick={() => router.push('/contact')} />
                 </div>
               </Col>
             </Row>
@@ -104,9 +106,9 @@ const Home = () => {
               <Col lg={6}>
                 <AnimatedSection
                   sectionType="primary"
-                  subtitle="Why Choose Us"
-                  title="A behind-the-scenes look at our agency"
-                  description="From concept to completion, discover how we bring your vision to life with innovation, collaboration, and expert craftsmanship."
+                  subtitle="Our Commitment"
+                  title="Transforming Spaces with Passion & Precision"
+                  description="Experience unparalleled craftsmanship and innovative designs tailored to your needs. We turn ideas into reality with meticulous attention to detail."
                   styles={{
                     subtitle: { color: "var(--color-primary)" },
                     title: { color: "var(--color-black)" },
@@ -116,14 +118,15 @@ const Home = () => {
                 />
                 <div className="features-list ms-lg-2 me-lg-4">
                   {[
-                    { icon: <PiLampLight size={25} />, title: "Tailored Design Solutions", desc: "We provide personalized interior design services that reflect your unique vision and lifestyle." },
-                    { icon: <PiArmchairLight size={25} />, title: "Seamless Project Management", desc: "We handle the entire design process, from concept to completion, with flawless execution." },
-                    { icon: <PiOfficeChairLight size={25} />, title: "Client-Centered Collaboration", desc: "Your input is valued throughout the entire process, ensuring your vision is fully realized." }
+                    { icon: <PiLampLight size={25} />, title: "Innovative Design Concepts", desc: "Our expert team brings fresh, creative ideas that push the boundaries of modern interior design." },
+                    { icon: <PiArmchairLight size={25} />, title: "Flawless Execution", desc: "From planning to execution, we ensure every element aligns seamlessly with your expectations." },
+                    { icon: <PiOfficeChairLight size={25} />, title: "Unmatched Attention to Detail", desc: "Every project is handled with precision, ensuring perfection in every corner of your space." }
                   ].map((feature, index) => (
                     <div
                       key={index}
                       className={`feature-item d-flex gap-3 border-bottom ${animateFeatures ? "fade-in-up" : "hidden"}`}
                       style={{ transitionDelay: `${index * 200}ms` }}
+                      onClick={() => router.push('/portfolio')}
                     >
                       <div className="icon-circle rounded-circle">{feature.icon}</div>
                       <div className="whychooseus-content">
@@ -134,6 +137,7 @@ const Home = () => {
                   ))}
                 </div>
               </Col>
+
               <Col lg={6}>
                 <div className="image-grid d-flex flex-column pt-lg-0 pt-3">
                   <div className="row">
@@ -213,6 +217,7 @@ const Home = () => {
                 text="Explore Our Work"
                 variant="primary"
                 animate={animateButtons}
+                onClick={() => router.push('/portfolio')}
               />
             </Col>
           </Row>

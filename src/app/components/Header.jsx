@@ -7,9 +7,9 @@ import "@styles/_header.scss";
 import logo from "@assets/images/logo1.png";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import gsap from "gsap";
+import Button from "./Button";
 
 const Header = ({ isLoading }) => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -33,6 +33,13 @@ const Header = ({ isLoading }) => {
     }
   }, [isLoading, mounted]);
 
+  const closeNavbar = () => {
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    if (navbarToggler && window.innerWidth < 992) {
+      navbarToggler.click();
+    }
+  };
+
   return (
     <>
       <div className="logo-container">
@@ -47,22 +54,20 @@ const Header = ({ isLoading }) => {
       </div>
       <header className="header" style={{ opacity: 0 }}>
         <Container>
-          <Navbar expand="lg" variant="dark" className="d-flex justify-content-between align-items-center px-2 py-1 position-relative">
+          <Navbar expand="lg" variant="dark" className="d-flex justify-content-between align-items-center ps-2 pe-0 py-0 position-relative border-0">
             <Navbar.Brand href="#" className="p-0">
             </Navbar.Brand>
 
-            <Navbar.Toggle
-              aria-controls="navbarNav"
-              onClick={() => setIsNavOpen(!isNavOpen)}
-              className={isNavOpen ? "collapsed" : ""}
-            />
+            <Navbar.Toggle aria-controls="navbarNav" className="navbar-toggler" />
 
-            <Navbar.Collapse id="navbarNav" className={isNavOpen ? "show" : ""}>
-              <Nav className="ms-auto">
-                <Link className="nav-link" href="/" onClick={() => setIsNavOpen(false)}>Home</Link>
-                <Link className="nav-link" href="/about" onClick={() => setIsNavOpen(false)}>About Us</Link>
-                <Link className="nav-link" href="/portfolio" onClick={() => setIsNavOpen(false)}>Portfolio</Link>
-                <Link className="nav-link" href="/contact" onClick={() => setIsNavOpen(false)}>Contact Us</Link>
+            <Navbar.Collapse id="navbarNav">
+              <Nav className="ms-auto align-items-center gap-3">
+                <Link className="nav-link" href="/" onClick={closeNavbar}>Home</Link>
+                <Link className="nav-link" href="/portfolio" onClick={closeNavbar}>Portfolio</Link>
+                <Link className="nav-link" href="/contact" onClick={closeNavbar}>Contact Us</Link>
+                <Link className="nav-link p-0" href="/get-estimates">
+                  <Button text="Get Estimates" variant="primary" animate={true} onClick={closeNavbar} />
+                </Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

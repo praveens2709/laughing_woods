@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require("path");
+
 const nextConfig = {
   reactStrictMode: true,
 
@@ -26,15 +28,15 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none'; frame-src 'self' https://www.youtube.com;",
+            value: "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none'; frame-src 'self' https://www.youtube.com; frame-ancestors 'self';",
           },
           {
             key: "Referrer-Policy",
-            value: "no-referrer-when-downgrade",
+            value: "strict-origin-when-cross-origin",
           },
           {
             key: "Permissions-Policy",
-            value: "geolocation=(), microphone=(), camera=()",
+            value: "geolocation=(), microphone=(), camera=(), interest-cohort=()",
           },
         ],
       },
@@ -45,18 +47,29 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'example.com',
-        port: '',
-        pathname: '/path/to/images/**',
+        protocol: "https",
+        hostname: "example.com",
+        pathname: "/**",
       },
     ],
-    formats: ["image/webp"],
+    formats: ["image/avif", "image/webp"],
   },
 
-  // Minification
+  // Minification & Optimization
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
+  },
+
+  sassOptions: {
+    includePaths: [path.join(__dirname, "src/app/styles")],
+  },
+
+  webpack(config) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@styles": path.resolve(__dirname, "src/styles"),
+    };
+    return config;
   },
 };
 

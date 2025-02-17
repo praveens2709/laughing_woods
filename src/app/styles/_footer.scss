@@ -78,6 +78,9 @@
 
   .contact {
     ul {
+      @media (max-width: vars.$breakpoint-mobile) {
+        align-items: flex-start;
+      }
       li {
         display: flex;
         align-items: center;

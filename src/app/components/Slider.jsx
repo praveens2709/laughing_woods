@@ -47,10 +47,10 @@ const Slider = ({ type, data }) => {
                 </div>
               </div>
             ) : type === 'video' ? (
-              <div className="single-video-item">
+              <div className="single-video-item w-100">
                 <div className="video-div">
                   <a href={item.url} target="_blank" rel="noopener noreferrer">
-                    <div className="shine-hover">
+                    <div className="shine-hover w-100">
                       <Image
                         src={item.thumbnail}
                         alt={item.title}

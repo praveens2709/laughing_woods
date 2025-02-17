@@ -11,10 +11,10 @@
   "dependencies": {
     "animejs": "^3.2.2",
     "axios": "^1.7.9",
-    "bootstrap": "^5.3.3",
     "dompurify": "^3.2.3",
     "framer-motion": "^12.0.6",
     "gsap": "^3.12.7",
+    "leaflet": "^1.9.4",
     "next": "15.1.6",
     "next-seo": "^6.6.0",
     "nodemailer": "^6.10.0",
@@ -23,13 +23,18 @@
     "react-dom": "^19.0.0",
     "react-google-recaptcha": "^3.1.0",
     "react-icons": "^5.4.0",
-    "sass": "^1.83.4",
+    "react-leaflet": "^5.0.0",
     "swiper": "^11.2.1",
     "validator": "^13.12.0",
     "yet-another-react-lightbox": "^3.21.7"
   },
   "devDependencies": {
+    "bootstrap": "^5.3.3",
+    "css-loader": "^7.1.2",
     "eslint": "^9.19.0",
-    "eslint-config-next": "^15.1.6"
+    "eslint-config-next": "^15.1.6",
+    "sass": "^1.85.0",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0"
   }
 }
