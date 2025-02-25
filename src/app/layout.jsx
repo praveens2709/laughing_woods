@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import styles from "./layout.module.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 // import "@styles/main.scss";
 import "./globals.scss";
 import WhatsappIcon from "@components/WhatsappIcon";
@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         <LoadingProvider isLoading={isLoading}>
           {!hideHeaderFooter && <Header isLoading={isLoading} />}
           <ModalForm/>
-          <main className={styles.content}>{children}</main>
+          <main>{children}</main>
           {!hideHeaderFooter && <Footer />}
         </LoadingProvider>
       </body>
